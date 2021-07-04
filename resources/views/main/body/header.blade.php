@@ -66,7 +66,7 @@
 											</li>
 										 
 									@endforeach
-										 
+										 <li><a href="{{route('login')}}">Admin Login</a></li>
 								</div>
 							</nav>											
 						</div>
