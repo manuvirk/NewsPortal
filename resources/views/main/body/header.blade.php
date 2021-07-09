@@ -31,8 +31,13 @@
 								<!-- Collection of nav links and other content for toggling -->
 								<div id="navbarCollapse" class="collapse navbar-collapse">
 									<ul class="nav navbar-nav">
-										<li><a href="#">HOME</a></li>
-              
+                  	@if(session()->get('lang') == 'hindi')
+
+										<li><a href="{{ URL::to('/')}}">घर </a></li>
+                    @else
+                     <li><a href="{{ URL::to('/')}}">HOME</a></li>
+										@endif
+
                     @foreach($category as $categories)
 									
 
@@ -41,7 +46,7 @@
                  $subcategory = DB::table('subcategories')->where('category_id',$categories->id)->get();
                   @endphp
 											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<a href="{{URL::to('category/post/'.$categories->id.'/'.$categories->category_en)}}"  >
 												@if(session()->get('lang') == 'hindi')
 												
 												{{$categories->category_hin}} 
@@ -51,7 +56,7 @@
 												<b class="caret"></b></a>
 											<ul class="dropdown-menu">
                       @foreach($subcategory as $subcategories)
-												<li><a href="#">
+												<li><a href="{{URL::to('subcategory/post/'.$subcategories->id.'/'.$subcategories->subcategory_en)}}" >
 												
 													@if(session()->get('lang') == 'hindi')
 														{{ $subcategories->subcategory_hin}}
@@ -66,7 +71,12 @@
 											</li>
 										 
 									@endforeach
+
+										@if(session()->get('lang') == 'hindi')
+										 <li><a href="{{route('login')}}">व्यवस्थापक लॉगिन</a></li>
+										 @else
 										 <li><a href="{{route('login')}}">Admin Login</a></li>
+										 @endif
 								</div>
 							</nav>											
 						</div>
@@ -133,14 +143,23 @@
 	</section><!-- /.header-close -->
 	
     <!-- top-add-start -->
+
+<!-- @php
+$horizontaladd = DB::table('ads')->where('type',1)->first();
+
+@endphp
 	<section>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-					<div class="top-add"><img src="{{asset('frontend/assets/img/top-ad.jpg" a')}}lt="" /></div>
+				@if($horizontaladd == NULL)
+            
+						@else
+					<div class="top-add"><img src="{{($horizontaladd->adpic)}}" alt="" /></div>
 				</div>
+				@endif
 			</div>
-		</div>
+		</div> -->
 	</section> <!-- /.top-add-close -->
 	
 	<!-- date-start -->

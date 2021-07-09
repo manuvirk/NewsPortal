@@ -10,7 +10,10 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\WebsiteController;
 use App\Http\Controllers\backend\GalleryController;
+use App\Http\Controllers\backend\AdsController;
+use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\frontend\ExtraController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,8 +155,12 @@ Route::post('/update/notices/{id}',[SettingController::class, 'updateNotices'])-
 
 Route::get('/photos/all',[GalleryController::class, 'getAllPhotos'])->name('all.photos');
 Route::get('/photos/add',[GalleryController::class, 'getAddPhotos'])->name('add.photos');
+
+Route::post('/photos/store',[GalleryController::class, 'getStorePhotos'])->name('store.photo');
+
 Route::get('/videos/add',[GalleryController::class, 'getAddVideos'])->name('add.videos');
 Route::get('/videos/all',[GalleryController::class, 'getAllVideos'])->name('all.videos');
+Route::post('/videos/store',[GalleryController::class, 'getStoreVideos'])->name('store.videos');
 
 //admin website route
 Route::get('/website/all',[WebsiteController::class, 'getAllWebsites'])->name('all.websites');
@@ -168,3 +175,41 @@ Route::post('/website/store',[WebsiteController::class, 'StoreWebsites'])->name(
 Route::get('/get/hindi',[ExtraController::class, 'hindiLang'])->name('lang.hindi');
 
 Route::get('/get/english',[ExtraController::class, 'englishLang'])->name('lang.english');
+
+//single post page
+
+
+Route::get('view/post/{id}',[ExtraController::class, 'singlePost']);
+
+
+//postcategory and subcategory pages
+
+
+Route::get('category/post/{id}/{category_en}',[ExtraController::class, 'catpost']);
+
+Route::get('subcategory/post/{id}/{subcategory_en}',[ExtraController::class, 'subcatpost']);
+
+
+//search district in homepage
+Route::get('/get/subdistrict/frontend/{district_id}',[ExtraController::class, 'subdistrictfront']);
+
+Route::get('/search/district',[ExtraController::class, 'searchdistrict'])->name('searchbydistrict');
+
+//Ads controller
+Route::get('/ads/all',[AdsController::class, 'getAllAds'])->name('all.ads');
+Route::get('/ads/add',[AdsController::class, 'getAddAds'])->name('add.ads');
+
+Route::post('/ads/store',[AdsController::class, 'getStoreAds'])->name('store.ad');
+
+
+//writer controller
+
+Route::get('/add/writer',[RoleController::class, 'addwriter'])->name('addwriter');
+
+Route::get('/all/writer',[RoleController::class, 'allwriter'])->name('allwriter');
+
+Route::post('/store/writter',[RoleController::class, 'storewriter'])->name('store.writer');
+
+Route::get('/edit/writer/{id}',[RoleController::class, 'editwriter'])->name('edit.users');
+Route::post('/update/writter/{id}',[RoleController::class, 'updatewriter'])->name('update.writer');
+Route::get('/delete/writer',[RoleController::class, 'deletewriter'])->name('delete.users');

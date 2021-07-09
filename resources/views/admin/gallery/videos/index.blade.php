@@ -12,11 +12,11 @@
                       </div>
                       <div class="col-5 col-sm-7 col-xl-8 p-0">
                         <h4 class="mb-1 mb-sm-0">Want even more features?</h4>
-                        <p class="mb-0 font-weight-normal d-none d-sm-block">Check out our Pro version with 5 unique layouts!</p>
+                        <p class="mb-0 font-weight-normal d-none d-sm-block">Easy News Website</p>
                       </div>
                       <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                         <span>
-                          <a href="https://www.bootstrapdash.com/product/corona-admin-template/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Upgrade to PRO</a>
+                          <a href="/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Visit News Site</a>
                         </span>
                       </div>
                     </div>
@@ -28,7 +28,7 @@
                   <div class="card-body">
                     <h4 class="card-title">All videos</h4>
                     <div class="template-demo">
-                     <a href="{{route('add.videos')}}">  <button type="button" class="btn btn-primary btn-fw float-right">Add Photos</button></a>
+                     <a href="{{route('add.videos')}}">  <button type="button" class="btn btn-primary btn-fw float-right">Add Videos</button></a>
 
                     </div>
                     <div class="table-responsive">
@@ -36,7 +36,7 @@
                         <thead>
                           <tr>
                             <th> # </th>
-                            <th> Photo</th>
+                          
                             <th> title	</th>
                             <th> type</th>
                             
@@ -49,16 +49,23 @@
                          @foreach($video as $videos)
                           <tr>
                             <td> {{$i++}}</td>
-                            <td> {{Str::limit($videos->title_en, 10)}} </td>
-                            <td> {{$videos->video}} </td>
+                            
+                           
                             <td> {{$videos->title}} </td>
-                            <td> {{$videos->type}} </td>
-                            <td> <img src="{{URL::to($videos->Image)}}" style=" width: 50px; height: 50px;" ></td>
-                             <td> {{$videos->video_date}} </td>
+                            <td> 
+                             @if($videos->type == 1)
+                            <span class="badge badge-success"> Big video</span>
+                            @else
+                            <span class="badge badge-info">Small video</span>
+                            @endif
+                            
+                            </td>
+                            
+                             
                           
                              <td> 
-                             <a href="{{route('edit.videos',$videos->id)}}" class="btn btn-info ">Edit</a>
-                             <a href="{{route('delete.videos',$videos->id)}}" onclick ="return confirm('Are you sure want to delete')"class="btn btn-danger">Delete</a>
+                             <a href="" class="btn btn-info ">Edit</a>
+                             <a href="" onclick ="return confirm('Are you sure want to delete')"class="btn btn-danger">Delete</a>
                               </td>
                        
                           </tr>

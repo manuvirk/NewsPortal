@@ -12,11 +12,11 @@
                       </div>
                       <div class="col-5 col-sm-7 col-xl-8 p-0">
                         <h4 class="mb-1 mb-sm-0">Want even more features?</h4>
-                        <p class="mb-0 font-weight-normal d-none d-sm-block">Check out our Pro version with 5 unique layouts!</p>
+                        <p class="mb-0 font-weight-normal d-none d-sm-block">Easy News Website</p>
                       </div>
                       <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                         <span>
-                          <a href="https://www.bootstrapdash.com/product/corona-admin-template/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Upgrade to PRO</a>
+                          <a href="/" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Visit News Site</a>
                         </span>
                       </div>
                     </div>
@@ -49,16 +49,24 @@
                          @foreach($photo as $photos)
                           <tr>
                             <td> {{$i++}}</td>
-                            <td> {{Str::limit($photos->title_en, 10)}} </td>
-                            <td> {{$photos->photo}} </td>
+                            
+                            
                             <td> {{$photos->title}} </td>
-                            <td> {{$photos->type}} </td>
+
+                            <td> 
+                            @if($photos->type == 1)
+                            <span class="badge badge-success"> Big photo</span>
+                            @else
+                            <span class="badge badge-info">Small photo</span>
+                            @endif
+                            
+                          </td>
                             <td> <img src="{{URL::to($photos->photo)}}" style=" width: 50px; height: 50px;" ></td>
                             
                           
                              <td> 
-                             <a href="{{route('edit.photos',$photos->id)}}" class="btn btn-info ">Edit</a>
-                             <a href="{{route('delete.photos',$photos->id)}}" onclick ="return confirm('Are you sure want to delete')"class="btn btn-danger">Delete</a>
+                             <a href="" class="btn btn-info ">Edit</a>
+                             <a href="" onclick ="return confirm('Are you sure want to delete')"class="btn btn-danger">Delete</a>
                               </td>
                        
                           </tr>
